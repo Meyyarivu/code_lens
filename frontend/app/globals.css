@@ -1,0 +1,285 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Apple-Inspired Liquid Glassmorphism Design System: CodeLens
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --bg-base: #f7f6f4;
+  --fg-base: #18181b;
+  --glass-surface: rgba(255, 255, 255, 0.72);
+  --glass-surface-subtle: rgba(255, 255, 255, 0.45);
+  --glass-surface-hover: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-border-strong: rgba(0, 0, 0, 0.14);
+  --glass-highlight: rgba(255, 255, 255, 0.8);
+  --warm-accent: #f97316;
+  --warm-accent-soft: rgba(249, 115, 22, 0.12);
+  --scrollbar-track: rgba(0, 0, 0, 0.03);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.16);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.28);
+}
+
+.dark {
+  --bg-base: #09090b;
+  --fg-base: #f4f4f6;
+  --glass-surface: rgba(18, 18, 22, 0.7);
+  --glass-surface-subtle: rgba(25, 25, 30, 0.45);
+  --glass-surface-hover: rgba(28, 28, 34, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --glass-border-strong: rgba(255, 255, 255, 0.14);
+  --glass-highlight: rgba(255, 255, 255, 0.06);
+  --warm-accent: #fb923c;
+  --warm-accent-soft: rgba(249, 115, 22, 0.15);
+  --scrollbar-track: rgba(255, 255, 255, 0.02);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.12);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.22);
+}
+
+* {
+  border-color: var(--glass-border);
+}
+
+html {
+  color-scheme: dark light;
+}
+
+body {
+  color: var(--fg-base);
+  background-color: var(--bg-base);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Inter, system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ──────────────── Custom Sleek Scrollbars ──────────────── */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* ──────────────── Liquid Glass Utility Classes ──────────────── */
+@layer components {
+  /* Primary Glass Container */
+  .liquid-glass {
+    background: var(--glass-surface);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 0 var(--glass-highlight);
+  }
+
+  /* Subtle Glass Surface for child cards */
+  .liquid-glass-subtle {
+    background: var(--glass-surface-subtle);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--glass-border);
+    box-shadow: inset 0 1px 0 0 var(--glass-highlight);
+  }
+
+  /* Interactive Glass Hover Card */
+  .liquid-glass-interactive {
+    background: var(--glass-surface);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 0 var(--glass-highlight);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .liquid-glass-interactive:hover {
+    background: var(--glass-surface-hover);
+    border-color: var(--glass-border-strong);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.3),
+                0 0 24px -6px rgba(249, 115, 22, 0.15),
+                inset 0 1px 0 0 var(--glass-highlight);
+  }
+
+  /* Warm Accent Primary Action Button */
+  .btn-warm {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    color: #ffffff;
+    font-weight: 500;
+    box-shadow: 0 4px 16px -2px rgba(234, 88, 12, 0.4),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-warm:hover:not(:disabled) {
+    background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+    box-shadow: 0 6px 24px -2px rgba(234, 88, 12, 0.55),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-warm:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px 0 rgba(234, 88, 12, 0.3);
+  }
+
+  /* Secondary Glass Button */
+  .btn-glass {
+    background: var(--glass-surface-subtle);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: inset 0 1px 0 0 var(--glass-highlight);
+    transition: all 0.18s ease;
+  }
+
+  .btn-glass:hover:not(:disabled) {
+    background: var(--glass-surface-hover);
+    border-color: var(--glass-border-strong);
+    color: var(--fg-base);
+  }
+
+  /* Glass Input Field */
+  .input-glass {
+    background: var(--glass-surface-subtle);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.18s ease;
+  }
+
+  .input-glass:focus {
+    border-color: rgba(249, 115, 22, 0.55);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15),
+                inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Warm Gradient Glow for Headlines */
+  .text-glow-warm {
+    background: linear-gradient(135deg, #ffffff 0%, #f4f4f5 50%, #fed7aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(135deg, #fb923c 0%, #f97316 60%, #ea580c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* ──────────────── Monaco Editor Problem Line Highlighting ──────────────── */
+.monaco-line-critical {
+  background: rgba(244, 63, 94, 0.15) !important;
+  border-left: 3px solid #f43f5e !important;
+}
+
+.monaco-line-high {
+  background: rgba(249, 115, 22, 0.15) !important;
+  border-left: 3px solid #f97316 !important;
+}
+
+.monaco-line-medium {
+  background: rgba(234, 179, 8, 0.14) !important;
+  border-left: 3px solid #eab308 !important;
+}
+
+.monaco-line-low {
+  background: rgba(56, 189, 248, 0.14) !important;
+  border-left: 3px solid #38bdf8 !important;
+}
+
+.monaco-line-info {
+  background: rgba(148, 163, 184, 0.12) !important;
+  border-left: 3px solid #94a3b8 !important;
+}
+
+.monaco-glyph-critical {
+  background: #f43f5e;
+  border-radius: 50%;
+  transform: scale(0.65);
+}
+
+.monaco-glyph-high {
+  background: #f97316;
+  border-radius: 50%;
+  transform: scale(0.65);
+}
+
+.monaco-glyph-medium {
+  background: #eab308;
+  border-radius: 50%;
+  transform: scale(0.65);
+}
+
+.monaco-glyph-low {
+  background: #38bdf8;
+  border-radius: 50%;
+  transform: scale(0.65);
+}
+
+.monaco-glyph-info {
+  background: #94a3b8;
+  border-radius: 50%;
+  transform: scale(0.65);
+}
+
+/* ──────────────── Organic Ambient Radial Glows ──────────────── */
+.ambient-glow-mesh {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ambient-glow-orb-1 {
+  position: absolute;
+  top: -15%;
+  left: 30%;
+  width: 65vw;
+  height: 55vh;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, rgba(234, 88, 12, 0.03) 45%, transparent 70%);
+  filter: blur(80px);
+  transform: translateZ(0);
+}
+
+.ambient-glow-orb-2 {
+  position: absolute;
+  top: 35%;
+  right: -10%;
+  width: 50vw;
+  height: 50vh;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.05) 0%, transparent 65%);
+  filter: blur(90px);
+  transform: translateZ(0);
+}
+
+.dark .ambient-glow-orb-1 {
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.09) 0%, rgba(234, 88, 12, 0.03) 45%, transparent 70%);
+}
+
+.dark .ambient-glow-orb-2 {
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.06) 0%, transparent 65%);
+}
